@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us Page</title>
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+
+<body>
+    <%- include('common/header') %>
+
+    <main class="main height">
+
+        <section class="cinfo" data-aos="flip-up">
+            <h2>Contact Us</h2>
+            <p class="info">
+                For quicker support, please visit self-help service like FAQs, Chatbot, Community to find solutions to common issues.
+            </p>
+        </section>
+
+        <section class="contact-us__container spacer" data-aos="flip-up">
+
+            <div class="contact-us__content"> 
+
+                <div class="main-content">
+                    <div class="contact-content">
+                        <form action="#" method="post">
+                            <div class="cinput-box">
+                                <input type="text" name="name" placeholder="Enter your name"  required>
+                            </div>
+                            <div class="cinput-box">
+                                <input type="email" name="email" placeholder="Enter your email-id" required>
+                            </div>
+                            <div class="cinput-box">
+                                <textarea name="msg" id="msg" cols="30" rows="10" placeholder="Your mesage" required></textarea>
+                            </div>
+
+                            <div class="cinput-box">
+                                <button type="submit" class="cbtn">Send <i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="form-img">
+                        <img src="images/contact.png" alt="image">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+        <%- include('common/footer') %>
+</body>
+
+</html>

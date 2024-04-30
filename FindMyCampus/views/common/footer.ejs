@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+
+  
+
+
+    <!-- /************ FOOTER ******************/ -->
+
+
+    <footer>
+        <div class="footer-container">
+            <div class="section about-us">
+                <h2>About Us</h2>
+                <p>
+                    FindMyCampus is India's most vibrant education platform used by over many students and
+                    colleges. Our aim is to simplify college selection and admission by helping students find the right
+                    college, rather than the best one.
+                </p>
+                <ul class="social__icons">
+                    <li>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="section links">
+                <h2>Top Courses</h2>
+                <ul>
+                    <li><a href="#">B-TECH</a></li>
+                    <li><a href="#">M-TECH</a></li>
+                    <li><a href="#">BBA</a></li>
+                    <li><a href="#">MBA</a></li>
+                </ul>
+            </div>
+            <div class="section links">
+                <h2>Support</h2>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="section contact">
+                <h2>Contact Us</h2>
+                <ul class="info">
+                    <li>
+                        <span>
+                            <i class="fa-solid fa-envelope"></i>
+                        </span>
+                        <p>
+                            <a href="#">abc@gmail.com</a>
+                        </p>
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-solid fa-phone"></i>
+                        </span>
+                        <p>
+                            <a href="#">+1 234 567 8901</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- copyright -->
+
+    <section class="copyrightText">
+        <p>Copyright <i class="fa-solid fa-copyright"></i> 2024 FindMyCampus. All Rights Reserved</p>
+    </section>
+
+
+    
+    <!--===============  JS ===============-->
+
+    <script>
+        /*=============== SHOW MENU ===============*/
+        const navMenu = document.getElementById('nav-menu'),
+            navToggle = document.getElementById('nav-toggle'),
+            navClose = document.getElementById('nav-close')
+
+        /* Menu show */
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.add('show-menu')
+        })
+
+
+        /* Menu hidden */
+        navClose.addEventListener('click', () => {
+            navMenu.classList.remove('show-menu')
+        })
+
+    </script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+
+</body>
+
+</html>

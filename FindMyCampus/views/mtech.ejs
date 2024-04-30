@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Tech</title>
+    <link rel="stylesheet" href="css/college_data.css">
+</head>
+
+<body>
+    <%- include('common/header') %>
+
+        <main class="main">
+            <section class="user_input_form" data-aos="flip-left">
+                <div class="title"> Do you want to search based on your preferences? </div>
+                <form action="/show_mtech" method="post">
+                    <div class="details">
+
+                        <div class="input_box">
+                            <label for="city"> City : </label>
+                            <select name="city" id="city">
+                                <option value="">--</option>
+                                <% if (result1.length> 0) { %>
+                                    <% for (let i=0; i<result1.length; i++) { %>
+                                        <option value="<%- result1[i].City %>"> <%- result1[i].City %> </option>
+                                        <% } } %>
+                            </select>
+                        </div>
+
+                        <div class="input_box">
+                            <label for="state"> State: </label>
+                            <select name="state" id="state" required>
+
+                                <option value="">--</option>
+                                <% if (result2.length> 0) { %>
+                                    <% for (let i=0; i<result2.length; i++) { %>
+                                        <option value="<%- result2[i].States %>"> <%- result2[i].States %> </option>
+                                        <% } } %>
+                            </select>
+                        </div>
+
+                        <div class="input_box">
+                            <label for="exam"> Exams: </label>
+                            <select name="exam" id="exam">
+
+                                <option value="">--</option>
+                                <% if (result3.length> 0) { %>
+                                    <% for (let i=0; i<result3.length; i++) { %>
+                                        <option value="<%- result3[i].Exams %>"> <%- result3[i].Exams %> </option>
+                                        <% } } %>
+                            </select>
+                        </div>
+
+
+
+                        <div class="input_box">
+                            <label for="order"> Fees Order: </label>
+                            <select name="order" id="order" required>
+                                <option value="ASC">Ascending</option>
+                                <option value="DESC">Descending</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="submit-button">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </section>
+        </main>
+
+
+
+        <section class="table">
+
+            <section class="table__header">
+                <h1> M-Tech Colleges In India </h1>
+                <p> Total Records Found: <b>
+                        <%= tot %>
+                    </b></p>
+            </section>
+
+            <section class="college_tab__body" id="college-body">
+
+
+                <% if (result.length> 0) { %>
+                    <% for (let i=0; i<result.length; i++) { %>
+
+
+                        <section class="college__body" data-aos="fade-up" data-aos-duration="1000">
+                            <div class="college_content">
+                                <div class="logo">
+                                    <img src="<%- result[i].logo %>" alt="logo">
+                                </div>
+
+                                <div class="clg_name">
+                                    <h3> <%- result[i].collegeName %> </h3>
+                                    <div class="clg_locn">
+                                        <span><i class="ri-map-pin-line"></i></span>
+                                        <span> <%- result[i].city %>, </span>
+                                        <span> <%- result[i].states %> </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <hr>
+
+                            <div class="college__other">
+                                <div class="grid__four-col">
+                                    <div class="boxes">
+                                        <p class="head">Course Offered: </p>
+                                        <p class="content"> <%- result[i].course %> </p>
+                                    </div>
+                                    <div class="boxes">
+                                        <p class="head">Fees:</p>
+                                        <p class="content"> <%- result[i].fees %> </p>
+                                    </div>
+                                    <div class="boxes">
+                                        <p class="head">Exam:</p>
+                                        <p class="content"> <%- result[i].exams %> </p>
+                                    </div>
+                                    <div class="boxes">
+                                        <p class="head">Packages:</p>
+                                        <p class="content"> <%- result[i].packages %> </p>
+                                    </div>
+                                </div>
+
+                                <div class="clg__contact">
+                                    <span class="head">Contact Details: </span>
+                                    <span class="content"> <%- result[i].contactDetails%> </span>
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <% } %>
+                            <%} else { %>
+
+                                <section class="college__body">
+                                    <div class="college_content">
+
+
+                                        <div class="clg_name">
+                                            <h3> Data Not Found </h3>
+                                            <div class="clg_locn">
+                                                <span><i class="ri-map-pin-line"></i></span>
+                                                <span>--, </span>
+                                                <span>--</span>
+                                            </div>
+                                            <div class="clg_rank">
+                                                --
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="college__other">
+                                        <div class="grid__four-col">
+
+                                        </div>
+                                    </div>
+
+
+                                    <% } %>
+
+
+                                </section>
+
+
+
+                                <div class="pagination" id="pagination">
+                                    <a href="#" id="prev">Previous</a>
+                                    <a href="#" id="next">Next</a>
+                                    <p id="page-numbers"> </p>
+                                </div>
+            </section>
+
+        </section>
+
+
+        <script>
+
+            const divPerPage = 10; // Number of div to show per page 
+            const dataContainer = document.getElementById('college-body');
+            const pagination = document.getElementById('pagination');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            const pageNumbers = document.getElementById('page-numbers');
+
+            const div = Array.from(dataContainer.getElementsByClassName('college__body'));
+
+            // Calculate the total number of pages 
+            const totalPages = Math.ceil(div.length / divPerPage);
+            let currentPage = 1;
+
+            // Function to display div for a specific page 
+            function displayPage(page) {
+                const startIndex = (page - 1) * divPerPage;
+                const endIndex = startIndex + divPerPage;
+                div.forEach((card, index) => {
+                    if (index >= startIndex && index < endIndex) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Function to update pagination buttons and page numbers 
+            function updatePagination() {
+                pageNumbers.textContent = `Page ${currentPage} of ${totalPages}`;
+                prevButton.disabled = currentPage === 1;
+                nextButton.disabled = currentPage === totalPages;
+            }
+
+            // Event listener for "Previous" button 
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayPage(currentPage);
+                    updatePagination();
+                }
+            });
+
+            // Event listener for "Next" button 
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayPage(currentPage);
+                    updatePagination();
+                }
+            });
+
+
+            // Initial page load 
+            displayPage(currentPage);
+            updatePagination();
+
+
+        </script>
+
+
+
+        <%- include('common/footer') %>
+</body>
+
+</html>
